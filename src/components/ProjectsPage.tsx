@@ -1,5 +1,5 @@
 import * as React from "react"
-import { initialGithubProjects } from "../utils/constants"
+import { initialGithubProjects } from "../utils/constantsAndTypes"
 import { AddProjectModal } from "./AddProjectModal"
 import { AddButton } from "./AddButton"
 import { SortSelector } from "./SortSelector"

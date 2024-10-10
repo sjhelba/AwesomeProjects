@@ -1,4 +1,12 @@
-export const initialGithubProjects = [
+export interface GithubProjectData {
+  id: string
+  name: string
+  url: string
+  rating: number
+  created_at: string
+}
+
+export const initialGithubProjects: GithubProjectData[] = [
   {
     id: "a87e8618-7392-4ac2-b4d0-c6b9b8fb3304",
     name: "React",

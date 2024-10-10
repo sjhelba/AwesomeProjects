@@ -3,6 +3,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "node",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "lib": ["DOM", "ESNext"],
     "jsx": "react-jsx",
     "sourceMap": true,
