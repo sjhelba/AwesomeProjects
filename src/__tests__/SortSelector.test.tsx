@@ -6,7 +6,7 @@ describe('SortSelector', () => {
   
   it('renders', () => {
     render(<SortSelector />)
-    expect(screen.getByTestId('sort-selector')).toBeInTheDocument()
+    expect(screen.getByTestId('sort-selector')).toBeTruthy()
   })
 
 })

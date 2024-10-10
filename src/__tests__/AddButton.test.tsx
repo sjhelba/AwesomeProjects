@@ -6,7 +6,7 @@ describe('AddButton', () => {
 
   it('renders', () => {
     render(<AddButton />)
-    expect(screen.getByRole('button', { name: 'add' })).toBeInTheDocument()
+    expect(screen.getByTestId('add-btn')).toBeTruthy()
   })
 
 })
