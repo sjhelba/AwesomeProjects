@@ -1,5 +1,5 @@
 import * as React from "react"
-import { initialGithubProjects, GithubProjectData, SortOption } from "../utils/constantsAndTypes"
+import { GithubProjectData, SortOption } from "../utils/constantsAndTypes"
 import { AddProjectModal } from "./AddProjectModal"
 import { AddButton } from "./AddButton"
 import { SortSelector } from "./SortSelector"
@@ -7,19 +7,23 @@ import { ProjectCard } from "./ProjectCard"
 import { Alert, Box, Grid2 as Grid, Paper, Snackbar, Typography } from "@mui/material"
 import { useState } from "react"
 
+const getProjectsFromLocalStorage = () => Object.values({...localStorage}).map(value => JSON.parse(value)) as GithubProjectData[]
+
 export const ProjectsPage = () => {
   const [addModalIsOpen, setAddModalIsOpen] = useState(false)
   const [toastIsActive, setToastIsActive] = useState(false)
-  const [projects, setProjects] = useState(initialGithubProjects)
+  const [projects, setProjects] = useState(getProjectsFromLocalStorage)
   const [sortOrder, setSetOrder] = useState<SortOption>(SortOption.NONE)
   const toastCloseHandler = () => {
     setToastIsActive(false)
   }
   const removeProject = (projectId: string) => {
-    setProjects(currentProjects => currentProjects.filter(project => project.id !== projectId))
+    localStorage.removeItem(projectId)
+    setProjects(getProjectsFromLocalStorage())
   }
   const addProject = (project: GithubProjectData) => {
-    setProjects(currentProjects => [...currentProjects, project])
+    localStorage.setItem(project.id, JSON.stringify(project))
+    setProjects(getProjectsFromLocalStorage())
     setToastIsActive(true)
   }
   const sortedProjects = (sortOrder === SortOption.RATING) ? projects.sort((a, b) => b.rating - a.rating)
