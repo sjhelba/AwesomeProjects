@@ -9,6 +9,15 @@ import { useState } from "react"
 
 const getProjectsFromLocalStorage = () => Object.values({...localStorage}).map(value => JSON.parse(value)) as GithubProjectData[]
 
+type GetSortCompareFunction = (sortOrder: SortOption) => ((a: GithubProjectData, b: GithubProjectData) => number)
+export const getSortCompareFunction: GetSortCompareFunction = sortOrder => ((a, b) => (
+    (sortOrder === SortOption.RATING_DESC) ? b.rating - a.rating
+  : (sortOrder === SortOption.RATING_ASC) ? a.rating - b.rating
+  : (sortOrder === SortOption.CREATED_AT_DESC) ? Date.parse(b.created_at) - Date.parse(a.created_at)
+  : (sortOrder === SortOption.CREATED_AT_ASC) ? Date.parse(a.created_at) - Date.parse(b.created_at)
+  : -1
+))
+
 export const ProjectsPage = () => {
   const [addModalIsOpen, setAddModalIsOpen] = useState(false)
   const [toastIsActive, setToastIsActive] = useState(false)
@@ -26,11 +35,8 @@ export const ProjectsPage = () => {
     setProjects(getProjectsFromLocalStorage())
     setToastIsActive(true)
   }
-  const sortedProjects = (sortOrder === SortOption.RATING_DESC) ? projects.sort((a, b) => b.rating - a.rating)
-    : (sortOrder === SortOption.RATING_ASC) ? projects.sort((a, b) => a.rating - b.rating)
-    : (sortOrder === SortOption.CREATED_AT_DESC) ? projects.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
-    : (sortOrder === SortOption.CREATED_AT_ASC) ? projects.sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at))
-    : projects
+  const sortCompareFunction = getSortCompareFunction(sortOrder)
+  const sortedProjects = sortOrder === SortOption.NONE ? projects : projects.sort(sortCompareFunction)
 
 return (
   <Paper elevation={1} data-testid="projects-page">

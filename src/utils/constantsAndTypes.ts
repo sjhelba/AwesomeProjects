@@ -12,7 +12,6 @@ export enum SortOption {
   CREATED_AT_ASC = 'created-asc-sort',
   RATING_DESC = 'rating-desc-sort',
   RATING_ASC = 'rating-asc-sort'
-
 }
 
 export const initialGithubProjects: GithubProjectData[] = [
