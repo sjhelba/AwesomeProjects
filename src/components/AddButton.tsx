@@ -1,10 +1,14 @@
+import * as React from "react"
 import { Button } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add'
-import * as React from "react"
 
-export const AddButton = () => {
+interface AddButtonProps {
+  callback: () => void
+}
+
+export const AddButton = ({callback}: AddButtonProps) => {
 
   return (
-    <Button data-testid="add-btn" variant="contained" startIcon={<AddIcon />}>Add</Button>
+    <Button onClick={callback} data-testid="add-btn" variant="contained" startIcon={<AddIcon />}>Add</Button>
   )
 }

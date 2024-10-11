@@ -3,10 +3,10 @@ import { render, screen } from '@testing-library/react'
 import { SortSelector } from "../components/SortSelector"
 
 describe('SortSelector', () => {
-  
   it('renders', () => {
-    render(<SortSelector />)
-    expect(screen.getByTestId('sort-selector')).toBeTruthy()
+    render(<SortSelector setSort={() => {}}/>)
+    expect(screen.queryByTestId('sort-selector')).toBeTruthy()
+  })
   })
 
 })
