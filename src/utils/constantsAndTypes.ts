@@ -6,6 +6,12 @@ export interface GithubProjectData {
   created_at: string
 }
 
+export enum SortOption {
+  NONE = '',
+  CREATED_AT = 'created-sort',
+  RATING = 'rating-sort'
+}
+
 export const initialGithubProjects: GithubProjectData[] = [
   {
     id: "a87e8618-7392-4ac2-b4d0-c6b9b8fb3304",

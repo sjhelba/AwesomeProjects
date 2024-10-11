@@ -1,5 +1,5 @@
 import * as React from "react"
-import { initialGithubProjects } from "../utils/constantsAndTypes"
+import { initialGithubProjects, SortOption } from "../utils/constantsAndTypes"
 import { AddProjectModal } from "./AddProjectModal"
 import { AddButton } from "./AddButton"
 import { SortSelector } from "./SortSelector"
@@ -10,9 +10,13 @@ import { useState } from "react"
 export const ProjectsPage = () => {
   const [addModalIsOpen, setAddModalIsOpen] = useState(false)
   const [projects, setProjects] = useState(initialGithubProjects)
+  const [sortOrder, setSetOrder] = useState<SortOption>(SortOption.NONE)
   const removeProject = (projectId: string) => {
     setProjects(currentProjects => currentProjects.filter(project => project.id !== projectId))
   }
+  const sortedProjects = (sortOrder === SortOption.RATING) ? projects.sort((a, b) => b.rating - a.rating)
+    : (sortOrder === SortOption.CREATED_AT) ? projects.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
+    : projects
 
 return (
   <Paper elevation={1} data-testid="projects-page">
@@ -21,10 +25,10 @@ return (
     <main onClick={() => addModalIsOpen && setAddModalIsOpen(false)}>
       <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
         <AddButton callback={() => setAddModalIsOpen(true)}/>
-        <SortSelector />
+        <SortSelector currentSort={sortOrder} setSort={setSetOrder}/>
       </Box>
       <Grid container>
-        {projects.map(project => (
+        {sortedProjects.map(project => (
           <Grid key={project.id}><ProjectCard projectData={project} deleteCallback={() => removeProject(project.id)}/></Grid>
         ))}
       </Grid>
