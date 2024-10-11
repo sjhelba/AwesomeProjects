@@ -8,8 +8,11 @@ export interface GithubProjectData {
 
 export enum SortOption {
   NONE = '',
-  CREATED_AT = 'created-sort',
-  RATING = 'rating-sort'
+  CREATED_AT_DESC = 'created-desc-sort',
+  CREATED_AT_ASC = 'created-asc-sort',
+  RATING_DESC = 'rating-desc-sort',
+  RATING_ASC = 'rating-asc-sort'
+
 }
 
 export const initialGithubProjects: GithubProjectData[] = [

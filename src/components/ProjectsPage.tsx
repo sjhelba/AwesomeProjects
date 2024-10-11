@@ -26,8 +26,10 @@ export const ProjectsPage = () => {
     setProjects(getProjectsFromLocalStorage())
     setToastIsActive(true)
   }
-  const sortedProjects = (sortOrder === SortOption.RATING) ? projects.sort((a, b) => b.rating - a.rating)
-    : (sortOrder === SortOption.CREATED_AT) ? projects.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
+  const sortedProjects = (sortOrder === SortOption.RATING_DESC) ? projects.sort((a, b) => b.rating - a.rating)
+    : (sortOrder === SortOption.RATING_ASC) ? projects.sort((a, b) => a.rating - b.rating)
+    : (sortOrder === SortOption.CREATED_AT_DESC) ? projects.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
+    : (sortOrder === SortOption.CREATED_AT_ASC) ? projects.sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at))
     : projects
 
 return (
