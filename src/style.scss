@@ -1,3 +1,40 @@
+root {
+  background-color: #eeeeee;
+}
+
+#projects-page {
+  margin: 1rem;
+  padding: 1rem;
+  min-height: 95vh;
+
+  h1 {
+    color:#ec0071;
+    text-transform: uppercase;
+    letter-spacing:4px;
+    font-weight: 300;
+  }
+
+  main {
+    padding: 1rem;
+  }
+}
+
+#header-btns-container {
+  flex-wrap: wrap;
+  row-gap: .5rem;
+  column-gap: 2rem;
+  
+  .selector {
+    div {
+      min-width: 100px;
+    }
+    .arrow-icon {
+      margin-bottom: -4px;
+    }
+  }
+
+}
+
 .card {
   width: 12rem;
   height: 12rem;
@@ -37,8 +74,16 @@
 
 }
 
+.alert {
+  width: 100%;
+}
+
 // utility styles
 
 .flex {
   display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
 }

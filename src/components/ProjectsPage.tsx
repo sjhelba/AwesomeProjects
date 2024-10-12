@@ -4,8 +4,9 @@ import { AddProjectModal } from "./AddProjectModal"
 import { AddButton } from "./AddButton"
 import { SortSelector } from "./SortSelector"
 import { ProjectCard } from "./ProjectCard"
-import { Alert, Box, Grid2 as Grid, Paper, Snackbar, Typography } from "@mui/material"
+import { Alert, Box, FormControl, Grid2 as Grid, Card, Snackbar, Typography } from "@mui/material"
 import { useState } from "react"
+import breakpointStyling from "../muiBreakpointStyles"
 
 const getProjectsFromLocalStorage = () => Object.values({...localStorage}).map(value => JSON.parse(value)) as GithubProjectData[]
 
@@ -39,7 +40,7 @@ export const ProjectsPage = () => {
   const sortedProjects = sortOrder === SortOption.NONE ? projects : projects.sort(sortCompareFunction)
 
 return (
-  <Paper elevation={1} data-testid="projects-page">
+  <Card data-testid="projects-page" id="projects-page" raised >
       <Snackbar
         open={toastIsActive}
         autoHideDuration={2500}
@@ -50,23 +51,40 @@ return (
           onClose={toastCloseHandler}
           severity="success"
           variant="filled"
-          sx={{ width: '100%' }}
         >
           {`Success! You've saved an awesome project!`}
         </Alert>
       </Snackbar>
-    <Typography variant="h1">Awesome Projects</Typography>
+    <Typography
+      component="h1"
+      variant="h3"
+      sx={breakpointStyling.h1}
+    >
+      Awesome Projects
+    </Typography>
     {addModalIsOpen && <AddProjectModal {...{addProject}} open={addModalIsOpen} closeModal={() => setAddModalIsOpen(false)}/>}
     <main onClick={() => addModalIsOpen && setAddModalIsOpen(false)}>
-      <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+      <Box
+        id="header-btns-container"
+        className="flex space-between"
+        sx={breakpointStyling.headerBtnsContainer}
+      >
+        <FormControl size='small'>
         <AddButton callback={() => setAddModalIsOpen(true)}/>
+        </FormControl>
+        <FormControl size='small'>
         <SortSelector currentSort={sortOrder} setSort={setSetOrder}/>
+        </FormControl>
       </Box>
-      <Grid container>
+      <Grid
+        container
+        spacing={4}
+        sx={breakpointStyling.cardsContainer}
+      >
         {sortedProjects.map(project => (
           <Grid key={project.id}><ProjectCard projectData={project} deleteCallback={() => removeProject(project.id)} color={getRandomColor()}/></Grid>
         ))}
       </Grid>
     </main>
-  </Paper>
+  </Card>
 )}
