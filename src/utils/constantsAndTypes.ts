@@ -72,3 +72,20 @@ export const initialGithubProjects: GithubProjectData[] = [
     created_at: "2024-01-10T10:11:49.460Z"
   }
 ]
+
+const colorsList = [
+'#bbd3ff',
+'#afcd61',
+'#eb9f74',
+'#e899b3',
+'#acddf2',
+'#fece95',
+'#71e6e3',
+'#e7cffd',
+'#f67db5'
+]
+
+const minIndex = 0
+const maxIndex = colorsList.length - 1
+const getRandomColorIndex = () => Math.floor(Math.random() * (maxIndex - minIndex + 1)) + minIndex
+export const getRandomColor = () => colorsList[getRandomColorIndex()]

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { GithubProjectData, SortOption } from "../utils/constantsAndTypes"
+import { getRandomColor, GithubProjectData, SortOption } from "../utils/constantsAndTypes"
 import { AddProjectModal } from "./AddProjectModal"
 import { AddButton } from "./AddButton"
 import { SortSelector } from "./SortSelector"
@@ -64,7 +64,7 @@ return (
       </Box>
       <Grid container>
         {sortedProjects.map(project => (
-          <Grid key={project.id}><ProjectCard projectData={project} deleteCallback={() => removeProject(project.id)}/></Grid>
+          <Grid key={project.id}><ProjectCard projectData={project} deleteCallback={() => removeProject(project.id)} color={getRandomColor()}/></Grid>
         ))}
       </Grid>
     </main>
