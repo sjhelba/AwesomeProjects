@@ -1,0 +1,44 @@
+.card {
+  width: 12rem;
+  height: 12rem;
+  
+  a {
+    padding: .5rem;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 24px;
+    grid-row-gap: 12px;
+    text-decoration: none;
+
+    .card-title {
+      grid-area: 1 / 1 / 4 / 5;
+      padding-top: 12px;
+      padding-left: 6px;
+      color: #1976d2;
+    }
+  
+    .card-actions {
+      height: fit-content;
+      padding: 0;
+      grid-area: 1 / 5 / 2 / 6;
+  
+      button {
+        padding: 0;
+      }
+    }
+  
+    .card-rating {
+      grid-area: 4 / 1 / 5 / 6;
+      color: #ec0071;
+    }
+  }
+
+}
+
+// utility styles
+
+.flex {
+  display: flex;
+}
