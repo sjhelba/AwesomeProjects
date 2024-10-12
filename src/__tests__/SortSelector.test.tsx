@@ -1,13 +1,11 @@
-import * as React from "react"
+import * as React from 'react'
 import { render, screen } from '@testing-library/react'
-import { SortSelector } from "../components/SortSelector"
-import { SortOption } from "../utils/constantsAndTypes";
-
+import { SortSelector } from '../components/SortSelector'
+import { SortOption } from '../utils/constantsAndTypes'
 
 describe('SortSelector', () => {
   it('renders', () => {
-    render(<SortSelector setSort={() => {}} currentSort={SortOption.NONE}/>)
+    render(<SortSelector setSort={() => {}} currentSort={SortOption.NONE} />)
     expect(screen.queryByTestId('sort-selector')).toBeTruthy()
   })
-
 })

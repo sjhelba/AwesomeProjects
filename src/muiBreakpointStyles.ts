@@ -13,7 +13,8 @@ const breakpointStyling = {
     padding: {
       xs: '0 1rem 1rem 0',
       sm: '1rem'
-  }},
+    }
+  },
   cardsContainer: {
     justifyContent: {
       xs: 'center',

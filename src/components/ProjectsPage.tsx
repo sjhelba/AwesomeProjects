@@ -1,23 +1,44 @@
-import * as React from "react"
-import { getRandomColor, GithubProjectData, SortOption } from "../utils/constantsAndTypes"
-import { AddProjectModal } from "./AddProjectModal"
-import { AddButton } from "./AddButton"
-import { SortSelector } from "./SortSelector"
-import { ProjectCard } from "./ProjectCard"
-import { Alert, Box, FormControl, Grid2 as Grid, Card, Snackbar, Typography } from "@mui/material"
-import { useState } from "react"
-import breakpointStyling from "../muiBreakpointStyles"
+import * as React from 'react'
+import {
+  getRandomColor,
+  GithubProjectData,
+  SortOption
+} from '../utils/constantsAndTypes'
+import { AddProjectModal } from './AddProjectModal'
+import { AddButton } from './AddButton'
+import { SortSelector } from './SortSelector'
+import { ProjectCard } from './ProjectCard'
+import {
+  Alert,
+  Box,
+  FormControl,
+  Grid2 as Grid,
+  Card,
+  Snackbar,
+  Typography
+} from '@mui/material'
+import { useState } from 'react'
+import breakpointStyling from '../muiBreakpointStyles'
 
-const getProjectsFromLocalStorage = () => Object.values({...localStorage}).map(value => JSON.parse(value)) as GithubProjectData[]
+const getProjectsFromLocalStorage = () =>
+  Object.values({ ...localStorage }).map((value) =>
+    JSON.parse(value)
+  ) as GithubProjectData[]
 
-type GetSortCompareFunction = (sortOrder: SortOption) => ((a: GithubProjectData, b: GithubProjectData) => number)
-export const getSortCompareFunction: GetSortCompareFunction = sortOrder => ((a, b) => (
-    (sortOrder === SortOption.RATING_DESC) ? b.rating - a.rating
-  : (sortOrder === SortOption.RATING_ASC) ? a.rating - b.rating
-  : (sortOrder === SortOption.CREATED_AT_DESC) ? Date.parse(b.created_at) - Date.parse(a.created_at)
-  : (sortOrder === SortOption.CREATED_AT_ASC) ? Date.parse(a.created_at) - Date.parse(b.created_at)
-  : -1
-))
+type GetSortCompareFunction = (
+  sortOrder: SortOption
+) => (a: GithubProjectData, b: GithubProjectData) => number
+export const getSortCompareFunction: GetSortCompareFunction =
+  (sortOrder) => (a, b) =>
+    sortOrder === SortOption.RATING_DESC
+      ? b.rating - a.rating
+      : sortOrder === SortOption.RATING_ASC
+        ? a.rating - b.rating
+        : sortOrder === SortOption.CREATED_AT_DESC
+          ? Date.parse(b.created_at) - Date.parse(a.created_at)
+          : sortOrder === SortOption.CREATED_AT_ASC
+            ? Date.parse(a.created_at) - Date.parse(b.created_at)
+            : -1
 
 export const ProjectsPage = () => {
   const [addModalIsOpen, setAddModalIsOpen] = useState(false)
@@ -45,54 +66,58 @@ export const ProjectsPage = () => {
   }
 
   const sortCompareFunction = getSortCompareFunction(sortOrder)
-  const sortedProjects = sortOrder === SortOption.NONE ? projects : projects.sort(sortCompareFunction)
+  const sortedProjects =
+    sortOrder === SortOption.NONE
+      ? projects
+      : projects.sort(sortCompareFunction)
 
-return (
-  <Card data-testid="projects-page" id="projects-page" raised >
+  return (
+    <Card data-testid="projects-page" id="projects-page" raised>
       <Snackbar
         open={toastIsActive}
         autoHideDuration={2500}
         onClose={toastCloseHandler}
-        anchorOrigin={{ vertical:'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <Alert
-          onClose={toastCloseHandler}
-          severity="success"
-          variant="filled"
-        >
+        <Alert onClose={toastCloseHandler} severity="success" variant="filled">
           {`Success! You've saved an awesome project!`}
         </Alert>
       </Snackbar>
-    <Typography
-      component="h1"
-      variant="h3"
-      sx={breakpointStyling.h1}
-    >
-      Awesome Projects
-    </Typography>
-    {addModalIsOpen && <AddProjectModal {...{addProject}} open={addModalIsOpen} closeModal={() => setAddModalIsOpen(false)}/>}
-    <main>
-      <Box
-        id="header-btns-container"
-        className="flex space-between"
-        sx={breakpointStyling.headerBtnsContainer}
-      >
-        <FormControl size='small'>
-          <AddButton callback={() => setAddModalIsOpen(true)}/>
-        </FormControl>
-        <FormControl size='small'>
-          <SortSelector currentSort={sortOrder} setSort={setSetOrder}/>
-        </FormControl>
-      </Box>
-      <Grid
-        container
-        spacing={4}
-        sx={breakpointStyling.cardsContainer}
-      >
-        {sortedProjects.map(project => (
-          <Grid key={project.id} ><ProjectCard projectData={project} deleteCallback={() => attemptDelete(project.id)} color={getRandomColor()}/></Grid>
-        ))}
-      </Grid>
-    </main>
-  </Card>
-)}
+      <Typography component="h1" variant="h3" sx={breakpointStyling.h1}>
+        Awesome Projects
+      </Typography>
+      {addModalIsOpen && (
+        <AddProjectModal
+          {...{ addProject }}
+          open={addModalIsOpen}
+          closeModal={() => setAddModalIsOpen(false)}
+        />
+      )}
+      <main>
+        <Box
+          id="header-btns-container"
+          className="flex space-between"
+          sx={breakpointStyling.headerBtnsContainer}
+        >
+          <FormControl size="small">
+            <AddButton callback={() => setAddModalIsOpen(true)} />
+          </FormControl>
+          <FormControl size="small">
+            <SortSelector currentSort={sortOrder} setSort={setSetOrder} />
+          </FormControl>
+        </Box>
+        <Grid container spacing={4} sx={breakpointStyling.cardsContainer}>
+          {sortedProjects.map((project) => (
+            <Grid key={project.id}>
+              <ProjectCard
+                projectData={project}
+                deleteCallback={() => attemptDelete(project.id)}
+                color={getRandomColor()}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </main>
+    </Card>
+  )
+}

@@ -8,9 +8,9 @@ root {
   min-height: 95vh;
 
   h1 {
-    color:#ec0071;
+    color: #ec0071;
     text-transform: uppercase;
-    letter-spacing:4px;
+    letter-spacing: 4px;
     font-weight: 300;
   }
 
@@ -21,9 +21,9 @@ root {
 
 #header-btns-container {
   flex-wrap: wrap;
-  row-gap: .5rem;
+  row-gap: 0.5rem;
   column-gap: 2rem;
-  
+
   .selector {
     div {
       min-width: 100px;
@@ -32,15 +32,14 @@ root {
       margin-bottom: -4px;
     }
   }
-
 }
 
 .card {
   width: 12rem;
   height: 12rem;
-  
+
   a {
-    padding: .5rem;
+    padding: 0.5rem;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -55,23 +54,22 @@ root {
       padding-left: 6px;
       color: #1976d2;
     }
-  
+
     .card-actions {
       height: fit-content;
       padding: 0;
       grid-area: 1 / 5 / 2 / 6;
-  
+
       button {
         padding: 0;
       }
     }
-  
+
     .card-rating {
       grid-area: 4 / 1 / 5 / 6;
       color: #ec0071;
     }
   }
-
 }
 
 .alert {
@@ -90,7 +88,6 @@ root {
     .input-container {
       padding: 0 12px;
       margin-bottom: 1rem;
-
     }
   }
 }
