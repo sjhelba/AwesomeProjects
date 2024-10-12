@@ -8,6 +8,28 @@ interface SortSelectorProps {
   setSort: (sortType: SortOption) => void
   currentSort: SortOption
 }
+const selectOptions = [
+  {
+    sortOption: SortOption.CREATED_AT_DESC,
+    labelText: 'Created Date',
+    directionIcon: ArrowUpwardIcon,
+  },
+  {
+    sortOption: SortOption.CREATED_AT_ASC,
+    labelText: 'Created Date',
+    directionIcon: ArrowDownwardIcon,
+  },
+  {
+    sortOption: SortOption.RATING_DESC,
+    labelText: 'Ratings',
+    directionIcon: ArrowUpwardIcon,
+  },
+  {
+    sortOption: SortOption.RATING_ASC,
+    labelText: 'Ratings',
+    directionIcon: ArrowDownwardIcon,
+  },
+]
 
 export const SortSelector = ({ setSort, currentSort}: SortSelectorProps) => {
   const onChangeHandler = (event: SelectChangeEvent<SortOption>) => {
@@ -16,13 +38,21 @@ export const SortSelector = ({ setSort, currentSort}: SortSelectorProps) => {
   }
 
   return (
-    <div>
+    <div className="selector">
       <InputLabel id="sort-select-label">Sort by</InputLabel>
-      <Select labelId="sort-select-label" data-testid="sort-selector" autoWidth value={currentSort} onChange={onChangeHandler} >
-        <MenuItem value={SortOption.CREATED_AT_DESC} >Created Date <ArrowUpwardIcon/></MenuItem>
-        <MenuItem value={SortOption.CREATED_AT_ASC} >Created Date <ArrowDownwardIcon/></MenuItem>
-        <MenuItem value={SortOption.RATING_DESC} >Rating <ArrowUpwardIcon/></MenuItem>
-        <MenuItem value={SortOption.RATING_ASC} >Rating <ArrowDownwardIcon/></MenuItem>
+      <Select
+        labelId="sort-select-label"
+        label="Sort by"
+        data-testid="sort-selector"
+        value={currentSort}
+        onChange={onChangeHandler}
+        placeholder="Choose Sort Order"
+      >
+        {selectOptions.map(selectOption => (
+          <MenuItem value={selectOption.sortOption} key={selectOption.sortOption}>
+            {selectOption.labelText} <selectOption.directionIcon className="arrow-icon"  fontSize="small"/>
+          </MenuItem>
+        ))}
 
       </Select>
     </div>
