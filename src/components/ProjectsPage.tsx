@@ -36,6 +36,14 @@ export const ProjectsPage = () => {
     setProjects(getProjectsFromLocalStorage())
     setToastIsActive(true)
   }
+  const attemptDelete = (id: string) => {
+    if (projects.length > 1) {
+      removeProject(id)
+    } else {
+      alert('At least 1 project must be in collection')
+    }
+  }
+
   const sortCompareFunction = getSortCompareFunction(sortOrder)
   const sortedProjects = sortOrder === SortOption.NONE ? projects : projects.sort(sortCompareFunction)
 
@@ -70,10 +78,10 @@ return (
         sx={breakpointStyling.headerBtnsContainer}
       >
         <FormControl size='small'>
-        <AddButton callback={() => setAddModalIsOpen(true)}/>
+          <AddButton callback={() => setAddModalIsOpen(true)}/>
         </FormControl>
         <FormControl size='small'>
-        <SortSelector currentSort={sortOrder} setSort={setSetOrder}/>
+          <SortSelector currentSort={sortOrder} setSort={setSetOrder}/>
         </FormControl>
       </Box>
       <Grid
@@ -82,7 +90,7 @@ return (
         sx={breakpointStyling.cardsContainer}
       >
         {sortedProjects.map(project => (
-          <Grid key={project.id}><ProjectCard projectData={project} deleteCallback={() => removeProject(project.id)} color={getRandomColor()}/></Grid>
+          <Grid key={project.id} ><ProjectCard projectData={project} deleteCallback={() => attemptDelete(project.id)} color={getRandomColor()}/></Grid>
         ))}
       </Grid>
     </main>
