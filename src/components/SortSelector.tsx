@@ -12,22 +12,22 @@ const selectOptions = [
   {
     sortOption: SortOption.CREATED_AT_DESC,
     labelText: 'Created Date',
-    directionIcon: ArrowUpwardIcon,
+    directionIcon: ArrowDownwardIcon,
   },
   {
     sortOption: SortOption.CREATED_AT_ASC,
     labelText: 'Created Date',
-    directionIcon: ArrowDownwardIcon,
+    directionIcon: ArrowUpwardIcon,
   },
   {
     sortOption: SortOption.RATING_DESC,
     labelText: 'Ratings',
-    directionIcon: ArrowUpwardIcon,
+    directionIcon: ArrowDownwardIcon,
   },
   {
     sortOption: SortOption.RATING_ASC,
     labelText: 'Ratings',
-    directionIcon: ArrowDownwardIcon,
+    directionIcon: ArrowUpwardIcon,
   },
 ]
 
