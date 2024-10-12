@@ -1,9 +1,5 @@
 import * as React from 'react'
-import {
-  getRandomColor,
-  GithubProjectData,
-  SortOption
-} from '../utils/constantsAndTypes'
+import { getRandomColor, GithubProjectData, SortOption } from '../utils'
 import { AddProjectModal } from './AddProjectModal'
 import { AddButton } from './AddButton'
 import { SortSelector } from './SortSelector'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import { SortOption } from '../utils/constantsAndTypes'
+import { SortOption } from '../utils'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 

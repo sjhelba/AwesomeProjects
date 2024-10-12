@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useState } from 'react'
-import { GithubProjectData } from '../utils/constantsAndTypes'
+import { GithubProjectData } from '../utils'
 
 interface AddProjectModalProps {
   open: boolean

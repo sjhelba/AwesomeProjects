@@ -1,4 +1,4 @@
-import { GithubProjectData } from '../utils/constantsAndTypes'
+import { GithubProjectData } from '../utils'
 
 export const projectMockData: GithubProjectData = {
   id: 'l43kd4k-9384-4io2-n5k4-jk20fn9x04nb',

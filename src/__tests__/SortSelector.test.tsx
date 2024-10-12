@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { SortSelector } from '../components/SortSelector'
-import { SortOption } from '../utils/constantsAndTypes'
+import { SortOption } from '../utils'
 
 describe('SortSelector', () => {
   it('renders', () => {

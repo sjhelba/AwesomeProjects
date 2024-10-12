@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Box, Card, CardActions, IconButton, Typography } from '@mui/material'
-import { GithubProjectData } from '../utils/constantsAndTypes'
+import { GithubProjectData } from '../utils'
 import DeleteIcon from '@mui/icons-material/Delete'
 import StarIcon from '@mui/icons-material/Star'
 

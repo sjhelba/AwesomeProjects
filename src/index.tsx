@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
-import { initialGithubProjects } from './utils/constantsAndTypes'
+import { initialGithubProjects } from './utils'
 
 if (!localStorage.length) {
   initialGithubProjects.forEach((project) =>

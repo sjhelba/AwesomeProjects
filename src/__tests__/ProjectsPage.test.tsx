@@ -4,7 +4,7 @@ import {
   getSortCompareFunction,
   ProjectsPage
 } from '../components/ProjectsPage'
-import { SortOption } from '../utils/constantsAndTypes'
+import { SortOption } from '../utils'
 import { getMockProjectsList, mockLocalStorageValue } from './mockData'
 
 describe('ProjectsPage', () => {
