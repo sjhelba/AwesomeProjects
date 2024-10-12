@@ -78,6 +78,23 @@ root {
   width: 100%;
 }
 
+.modal-content {
+  form {
+    padding: 0 3rem 2rem;
+    max-width: 40rem;
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .input-container {
+      padding: 0 12px;
+      margin-bottom: 1rem;
+
+    }
+  }
+}
+
 // utility styles
 
 .flex {
@@ -86,4 +103,13 @@ root {
 
 .space-between {
   justify-content: space-between;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }

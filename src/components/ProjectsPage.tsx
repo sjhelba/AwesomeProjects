@@ -71,7 +71,7 @@ return (
       Awesome Projects
     </Typography>
     {addModalIsOpen && <AddProjectModal {...{addProject}} open={addModalIsOpen} closeModal={() => setAddModalIsOpen(false)}/>}
-    <main onClick={() => addModalIsOpen && setAddModalIsOpen(false)}>
+    <main>
       <Box
         id="header-btns-container"
         className="flex space-between"
